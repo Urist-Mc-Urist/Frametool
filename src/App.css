@@ -1,38 +1,155 @@
+body, .App {
+  background: linear-gradient(135deg, #272635, #28272e); /* Subtle gradient */
+  color:aliceblue;
+  font-family: 'Arial', sans-serif;
+}
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  padding: 20px; /* Some spacing around the app container */
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* Arrange children vertically */
+  justify-content: center; /* Vertically center children */
+  align-items: center; /* Horizontally center children */
+}
+
+#frameRateDisplay {
+  display: inline-block;
+  width: 50px; 
+  text-align: right; 
+  margin-left: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.1); 
+  padding: 2px 10px; 
+  border-radius: 15px;
+}
+
+.controlBox {
+  text-align: left;
+  gap: 20px;
+  padding: 15px;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px); /* This will make it slightly see-through with a blur */
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.fileUpload {
+  margin-top: 20px;
+  margin-left: 60px;
+  cursor: pointer; /* Makes it more obvious it's clickable */
+}
+
+.playerWrapper {
+  padding: 15px;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px); 
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.downloadButton {
+  margin-top: 20px;
+}
+
+.FrameBox, .FBLoading {
+  width: 70%;
+  margin-top: 20px;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px); 
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+  position: relative; 
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+.FBLoading {
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.frameWrapper {
+  display: flex;
+  justify-content: flex-start; 
+  overflow-x: auto; 
+  overflow-y: hidden;
+  white-space: nowrap;
+  outline: none; 
+  scrollbar-color: #827eb4 #2a2846;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.frameWrapper::-webkit-scrollbar {
+  display: none; /* Hide default scrollbar for cleaner appearance. This is for webkit browsers like Chrome */
 }
+
+/* Fade effect at both ends */
+.FrameBox::before, 
+.FrameBox::after,
+.FBLoading::before,
+.FBLoading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50px; /* You can adjust this for the desired fade width */
+  pointer-events: none; /* This ensures the pseudo-elements don't interfere with the user's interactions */
+  z-index: 1; /* Make sure the fade is on top of the frames */
+}
+
+.FrameBox::before,
+.FBLoading::before {
+  left: 0;
+  background: linear-gradient(to right, #272635, rgba(255,255,255,0)); /* Adjust the color (white here) to match your page's background */
+}
+
+.FrameBox::after,
+.FBLoading::after {
+  right: 0;
+  background: linear-gradient(to left, #272635, rgba(255,255,255,0)); /* Adjust the color (white here) to match your page's background */
+}
+
+.frameTN {
+  border-radius: 10px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  margin: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for scaling and shadow */
+}
+
+.frameTN:hover {
+  transform: scale(1.1);
+  transition: 0.1s;
+}
+
+.frameContainer {
+  position: relative;
+  display: inline-block;  /* Ensures the X button and frame stick together */
+}
+
+.removeButton {
+  position: absolute;
+  top: 15px;   /* Adjust these values to position the X button */
+  right: 15px;
+  width: 20px; /* Adjust as needed */
+  cursor: pointer;
+  opacity: 0;  /* Initially make the X button invisible */
+  transition: opacity 0.3s;  /* Smooth transition for the X button's appearance */
+}
+
+.frameContainer:hover .removeButton {
+  opacity: 1;  /* Make the X button visible on hover */
+  transition: opacity 0.6s
+}
+
+.frameContainer:hover .frameTN {
+  transform: scale(1.1);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);  /* Horizontal offset, vertical offset, blur radius, and color */
+  z-index: 2;
+}
+
+
+
