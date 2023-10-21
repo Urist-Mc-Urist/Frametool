@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Frametool/static/css/main.49995230.css",
+    "main.js": "/Frametool/static/js/main.f3b2c99e.js",
+    "index.html": "/Frametool/index.html",
+    "main.49995230.css.map": "/Frametool/static/css/main.49995230.css.map",
+    "main.f3b2c99e.js.map": "/Frametool/static/js/main.f3b2c99e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.49995230.css",
+    "static/js/main.f3b2c99e.js"
+  ]
+}
