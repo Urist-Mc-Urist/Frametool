@@ -27,7 +27,7 @@ The FrameTool shines as an animation reference tool. It helps you:
 
 1. **Clone the Repository**:
     ```bash
-    git clone https://github.com/your_username/FrameTool.git
+    git clone https://github.com/Urist-Mc-Urist/Frametool.git
     ```
 
 2. **Navigate to the directory**:
